@@ -1,13 +1,7 @@
-﻿using BananaOS;
+using BananaOS;
 using BananaOS.Pages;
-using Photon.Pun;
-using System;
-using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
-using UnityEngine.XR;
-using UpandDownBananaOS;
-using Utilla;
 
 namespace QuickDisconnectBananaOS
 {
@@ -20,18 +14,11 @@ namespace QuickDisconnectBananaOS
         public override string OnGetScreenContent()
         {
             var BuildMenuOptions = new StringBuilder();
-            if (PhotonNetwork.InRoom && photonmoddedcheck.modcheck.IsModded())
-            { 
             BuildMenuOptions.AppendLine("<color=blue>small</color> <color=purple>arms</color>");
             BuildMenuOptions.AppendLine("By <color=green>kinda</color> <color=black>monke</color>");
             BuildMenuOptions.AppendLine("By <color=blue>description:</color>");
             BuildMenuOptions.AppendLine("By <color=blue>this mod halfs your arms to make them small</color>");
             BuildMenuOptions.AppendLine(selectionHandler.GetOriginalBananaOSSelectionText(0, "Enabled = " + IsEnabled));
-            return BuildMenuOptions.ToString();
-            }
-
-            if (PhotonNetwork.InRoom && !photonmoddedcheck.modcheck.IsModded())
-                BuildMenuOptions.AppendLine("<color=red>not in a modded</color>");
             return BuildMenuOptions.ToString();
         }
 
@@ -51,8 +38,6 @@ namespace QuickDisconnectBananaOS
                     if (selectionHandler.currentIndex == 0)
                     {
                         IsEnabled = !IsEnabled;
-
-                            if (IsEnabled && PhotonNetwork.CurrentRoom.CustomProperties["gameMode"].ToString().Contains("MODDED_"))
                         {
                             GameObject.Find("Player VR Controller/GorillaPlayer").transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                         }
